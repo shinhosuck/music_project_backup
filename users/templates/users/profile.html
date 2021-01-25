@@ -1,0 +1,92 @@
+{% extends "music/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	<title>Profile</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+	#id_username {
+		outline: none;
+		border: none;
+		box-shadow: none;
+	}
+	#id_email {
+		outline: none;
+		border: none;
+		box-shadow: none;
+	}
+	#div_id_username {
+		margin-bottom: 0.5rem;
+	}
+	#div_id_email {
+		margin-bottom: 0.5rem;
+	}
+	#div_id_image {
+		margin-bottom: 0.5rem;
+	}
+	#hint_id_username {
+		display: none;
+	}
+	.requiredField {
+		color:rgb(245, 239, 239);
+	}
+	#div_id_image div {
+		color: rgb(245, 239, 239);
+		font-size: 0.9rem;
+	}
+	#div_id_image div a{
+		color: rgb(5, 150, 5);
+		font-size: 0.8rem;
+	}
+	#div_id_image div {
+		font-size: 0.8rem;
+	}
+	#id_image {
+		font-size: 0.8rem;
+		padding-top: 0.3rem;
+		box-shadow: none;
+		outline: none;
+		border: none;
+	}
+	label {
+		margin-bottom: 0.3rem;
+	}
+	.form-control {
+		padding-top: 0;
+		padding-bottom: 0;
+		border-radius: 0.3rem;
+	}
+</style>
+	<div class="row-profile">
+		<div class="col-profile">
+			<h3 class="profile-form-title">{{user.username|truncatechars:20}}'s Profile</h3>
+			<div class="profile-image-text-container">
+				<img class="profile-profile-image" src="{{profile.image.url}}" alt="profile image">
+				<div class="profile-small-container">
+					<small class="profile-username">{{ profile.user }}</small>
+					<small class="profile-email">{{ profile.user.email}}</small>
+				</div>
+			</div>
+			<div class="profile-form-container">
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ u_form|crispy }}
+					{{ p_form|crispy }}
+					<button class="profile-update-btn">Update</button>
+					<a type=button href="{% url 'music:home' %}" class="profile-cancel-btn">Home</a>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

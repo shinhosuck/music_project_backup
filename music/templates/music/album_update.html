@@ -1,0 +1,86 @@
+{% extends "music/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Update Album</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+    .requiredField {
+        color: white;
+    }
+    label {
+        margin-bottom: 0.3rem;
+    }
+    #div_id_title {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_artist {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_genre {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_album_cover div {
+        color: rgb(255, 255, 255);
+        font-size: 0.8rem;
+    }
+    #div_id_album_cover a {
+        color: rgb(0, 128, 0);
+        font-size: 0.8rem;
+    }
+    .form-group {
+        margin-bottom: 0.5rem;
+    }
+    #id_album_cover {
+        padding-top: 0rem !important;
+        font-size: 0.8rem;
+    }
+    .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0.3rem;
+    }
+    #id_title {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_artist {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_genre {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_album_cover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="album-update-form-container">
+        <div class="album-update-form">
+            <h3 class="album-update-form-title">Album Update</h3>
+            {{ album_update_form|crispy }}
+            <button class="album-update-btn">Update</button>
+            <a class="album-update-form-cancel" href="{% url 'music:my_albums' user.pk %}" type="button">Cancel</a>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

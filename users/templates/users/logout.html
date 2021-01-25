@@ -1,0 +1,17 @@
+{% extends 'music/base.html' %}
+
+{% block title %}
+    <title>Sign Out</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="logout-container">
+        <div class='container-items'>
+            <p class="signed-out">You Are Signed Out!</p>
+            <small class="sign-in-again">
+                <a href="{% url 'users:login' %}" class="sign-in-again-link">Sign in again</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
+

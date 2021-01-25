@@ -1,0 +1,135 @@
+{% extends 'music/base.html' %}
+
+{% block title %}
+    <title>Album Detail </title>
+{% endblock title %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<div class="album-detail-container">
+    <div class="album-detail-row">
+        <div class="album-detail-album-cover">
+            {% if album in user.album_set.all %}
+            <div class="album-detail-image-text">
+                <img class="album-detail-album-image" src="{{ album.album_cover.url}}" alt="album_cover">
+                <div class="album-detail-album-info-container">
+                    <h5 class="album-detail-album-title">{{ album.title|truncatechars:15 }}</h5>
+                    <small class="album-detail-album-artist">
+                        Artist: {{ album.artist }}
+                    </small>
+                    <small class="album-detail-album-small">
+                        Uplaoded By: {{ album.user.username }}
+                    </small>
+                    <small class="album-detail-album-small">
+                        Date Added: {{ album.date_added|date:"F, d, Y" }}
+                    </small>
+                    <div class="album-detail-buttons">
+                    {% if album in user.album_set.all %}
+                        <a type="button" href="{% url 'music:album_update' album.pk %}" class="update-album-btn">Update</a>
+                        <a type="button" href="{% url 'music:create_song' album.pk %}" class="add-song-btn">Add song</a>
+                        <a type="button" href="{% url 'music:album_warning_message' album.pk %}" class="delete-album-btn">Delete</a>
+                    {% endif  %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="album-detail-image-text">
+                <img class="album-detail-album-image" src="{{ album.album_cover.url}}" alt="album_cover">
+                <div class="album-detail-album-info-container">
+                    <h5 class="album-detail-album-title">{{ album.title|truncatechars:15 }}</h5>
+                    <small class="album-detail-album-small">
+                        Artist: {{ album.artist }}
+                    </small>
+                    <small class="album-detail-album-small">
+                        Uploaded By: {{ album.user.username }}
+                    </small>
+                    <small class="album-detail-album-small">
+                        Date Added: {{ album.date_added|date:"F, d, Y" }}
+                    </small>
+                </div>
+            </div>
+            {% endif%}
+        </div>
+        <!-- end of album cover -->
+        {% if not album.song_set.all %}
+            <div class="album-detail-no-song-message">
+                <div class="album-detail-no-song-text">
+                    <p style="text-align: center;">There aren't any songs associated with this album.</p>
+                </div>
+            </div>
+        {% else %}
+            {% if album in user.album_set.all %}
+                <div class="album-detail-song-container">
+                    <div class="album-detail-list-songs">
+                        <small class="album-detail-update-song-text">
+                            Click song to update or delete.
+                        </small>
+                        <div class="album-detail-list-songs-text">
+                            <small class="album-detail-list-songs-table-header1">
+                                Title
+                            </small>
+                            <small class="album-detail-list-songs-table-header2">
+                                Date Added
+                            </small>
+                            <small class="album-detail-list-songs-table-header3">
+                                File
+                            </small>
+                        </div>
+                        {% for song in album.song_set.all %}
+                            <ul class="album-detail-ul">
+                                <li class="album-detail-song-title">
+                                    <a class="song-tile-a-link" href="{% url 'music:song_update' album.pk song.pk %}">
+                                    {{ forloop.counter }}. {{ song.title|truncatechars:20 }}</a>
+                                </li>
+                                <li class="song-date-added">
+                                    <small class="song-date-added-text">{{ song.date_added|date:"F, d, Y" }}</small>
+                                </li>
+                                <li class="song-file-type">
+                                    <small class="song-file-type-text">{{ song.file_type }}</small>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="album-detail-song-container">
+                    <div class="album-detail-list-songs">
+                        <div class="album-detail-list-songs-text">
+                            <small class="album-detail-list-songs-table-header1">
+                                Title
+                            </small>
+                            <small class="album-detail-list-songs-table-header2">
+                                Date Added
+                            </small>
+                            <small class="album-detail-list-songs-table-header3">
+                                File
+                            </small>
+                        </div>
+                        {% for song in album.song_set.all %}
+                        <ul class="album-detail-ul">
+                            <li class="album-detail-song-title">
+                                <a class="song-tile-a-link" href="#">
+                                {{ song.title|truncatechars:15 }}</a>
+                            </li>
+                            <li class="song-date-added">
+                                <small class="song-date-added-text">{{ song.date_added|date:"F, d, Y" }}</small>
+                            </li>
+                            <li class="song-file-type">
+                                <small class="song-file-type-text">{{ song.file_type }}</small>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

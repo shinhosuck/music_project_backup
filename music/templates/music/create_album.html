@@ -1,0 +1,75 @@
+{% extends 'music/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>New Album</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+    #div_id_title {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_artist {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_genre {
+        margin-bottom: 0.5rem;
+    }
+    #div_id_album_cover {
+        margin-bottom: 0.5rem;
+    }
+    #id_album_cover {
+        padding-top: 0rem !important;
+        font-size: 0.8rem;
+    }
+    .requiredField {
+        margin-bottom: 0.3rem !important;
+    }
+    #id_title {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_artist {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_genre {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_album_cover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0.3rem;
+    }
+</style>
+<div class="album-form-row">
+    <div class="album-form-col">
+        <h3 class="create-ablum-title">Create Album</h3>
+        <form method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <button class='album-submit-btn' type='submit'>Submit</button>
+            <a class="album-form-cancel" href="{% url 'music:home' %}" type="button">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

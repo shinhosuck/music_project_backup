@@ -1,0 +1,43 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+    <title>Welcome to CloudBeat</title>
+</head>
+<body>
+    <div class="landing-page-img">
+        <div class="landing-page-bg-color">
+            <div class="landing-page-content-conainer">
+                <div class="landing-page-text-container">
+                    <h1 class="landing-page-title">Welcome to CloudBeat</h1>
+                    <p class="landing-page-para">
+                        Join our community to share your latest creation of hits, and
+                        discover and stream playlists from other artists like you from around the world.
+                    </p>
+                </div>
+                <div class="landing-page-btns">
+                    <a href="{% url 'users:register' %}" type="button" class="landing-page-sign-up-btn">
+                        Sign up now
+                    </a>
+                    <a href="{% url 'music:home' %}" type="button" class="landing-page-explore-playlist-btn">
+                        Explore playlist
+                    </a>
+                    <small class="landing-page-have-account">
+                        Already have an account?
+                        <a href="{% url 'users:login' %}" class="landing-page-signin-link">Sign in</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

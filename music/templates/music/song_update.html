@@ -1,0 +1,73 @@
+{% extends "music/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Update Song</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+   .form-group {
+       margin-bottom: 0.5rem;
+   }
+   label {
+       margin-bottom: 0.3rem;
+   }
+   #div_id_file_song div {
+        font-size: 0.8rem;
+   }
+   #div_id_file_song a {
+        color: green
+   }
+   .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0.3rem;
+    }
+    #id_title {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_file_type {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    #id_file_song {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+    <form method="POST">
+            {% csrf_token %}
+        <div class="song-update-form-container">
+            <div class="song-update-form">
+                <div class="song-update-form-and-buttons">
+                    <h3 class="song-update-form-title">Song Update Form</h3>
+                    {{ song_update_form|crispy }}
+                    <button class="song-update-btn">Update</button>
+                    <a class="song-delete-btn" type="button"
+                        href="{% url 'music:song_warning_message' album_pk song_pk %}">
+                        Delete
+                    </a>
+                </div>
+                <small class="song-update-form-cancel-text">
+                    Click cancel to exit
+                    <a class="song-update-form-cancel" href="{% url 'music:home' %}">Cancel</a>
+                </small>
+            </div>
+        </div>
+    </form>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

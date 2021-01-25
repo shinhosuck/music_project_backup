@@ -1,0 +1,26 @@
+{% load static %}
+  <div class="nav-container">
+      <nav class="nav-bar-container">
+          <div class="brand-name">
+              <a class="brand" href="{% url 'music:home' %}">
+                <img src="{% static 'music/cloud.png' %}" width="70px" alt="">
+                <h5 class="brand-title">CloudBeat</h5>
+              </a>
+              <i class="fas fa-bars bar-btn"></i>
+          </div>
+          <div class="nav-items">
+            {% if user.is_authenticated %}
+              <a href="{% url 'music:home' %}" class="nav-item">home</a>
+              <a href="{% url 'music:my_albums' user.pk %}" class="nav-item">my album</a>
+              <a href="{% url 'music:create_album' %}" class="nav-item">new album</a>
+              <a href="{% url 'users:profile' user.pk %}" class="nav-item">profile</a>
+              <a href="{% url 'users:logout' %}" class="nav-item">sign out</a>
+            {% else %}
+              <a href="{% url 'music:home' %}" class="nav-item">home</a>
+              <a href="{% url 'users:register' %}" class="nav-item">register</a>
+              <a href="{% url 'users:login' %}" class="nav-item">sign in</a>
+              <a href="{% url 'music:landing_page' %}" class="nav-item">exit site</a>
+            {% endif %}
+          </div>
+      </nav>
+  </div>

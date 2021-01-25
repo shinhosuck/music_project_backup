@@ -1,0 +1,236 @@
+{% extends 'music/base.html' %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock title %}
+
+{% block content %}
+<div class='main-container'>
+    <div class='side-window-container'>
+        <h3 class="side-window-header">Latest Albums</h3>
+        <div class='side-window'>
+            <div class='side-window-text-container'>
+                {% for album in album_set %}
+                <div class="side-window-text-col">
+                    <a href="{% url 'music:play_album' album.pk %}" class="side-window-play-link">
+                        <img class='side-window-img' src="{{ album.album_cover.url }}" alt="Album image">
+                        <small class='side-window-album-title'>{{ album.title|truncatechars:13 }}</small>
+                        <small class='side-window-text'>{{ album.artist|truncatechars:15 }}</small>
+                        <i class="fa fa-play fa-2x side-window-hide-btn side-windw-play-btn"></i>
+                        <small class="side-window-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                            <i class="fas fa-thumbs-up"></i>
+                            {{ album.likes.count }}
+                        </small>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end of side window -->
+    <div class="content-container">
+        <div class='album-header-container'>
+            <h3 class='album-header'>Country</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Country' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+        <div class="album-header-container">
+            <h3 class='album-header'>Pop</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Pop' %}
+                    <div class="album-col"title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}" >
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15}}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15}}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="album-header-container">
+            <h3 class='album-header'>Rock</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Rock' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+        <div class="album-header-container">
+            <h3 class='album-header'>Rap</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Rap' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+         <div class="album-header-container">
+            <h3 class='album-header'>Blues</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Blues' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+         <div class="album-header-container">
+            <h3 class='album-header'>R&B</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'R&B' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+        <div class="album-header-container">
+            <h3 class="album-header">Classical</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Classical' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+        <div class="album-header-container">
+            <h3 class="album-header">Jazz</h3>
+            <small class="album-header-small">Popular collections of hits from the CloudBeat community.</small>
+        </div>
+        <div class="album-container">
+            {% for album in albums %}
+                {% if album.genre.name == 'Jazz' %}
+                    <div class="album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <a href="{% url 'music:play_album' album.pk %}" class="container-items">
+                            <img class='img-size' src="{{ album.album_cover.url }}" alt="">
+                            <small class="album-title">{{ album.title|truncatechars:15 }}</small>
+                            <small class="album-artist">{{ album.artist|truncatechars:15 }}</small>
+                            <i class="fa fa-play fa-2x hide-btn play-btn"></i>
+                            <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                {{ album.likes.count }}
+                            </small>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor%}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

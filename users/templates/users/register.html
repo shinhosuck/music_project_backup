@@ -1,0 +1,93 @@
+
+{% extends 'music/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}
+    <title>Sign Up</title>
+{% endblock title%}
+
+{% block navbar%}
+{% endblock navbar%}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+/* from form */
+/*ul li {
+    margin-left: 1.5rem;
+    font-size: 0.75rem;
+}*/
+/*.form-text {
+    color: rgb(161, 161, 161)!important;
+}*/
+#hint_id_username {
+    display: none;
+}
+#hint_id_password1 {
+    display: none;
+}
+#hint_id_password2 {
+    display: none;
+}
+#id_username {
+    outline: none;
+    box-shadow: none;
+    border: none
+}
+#id_email {
+    outline: none;
+    box-shadow: none;
+    border: none
+}
+#id_password1 {
+    outline: none;
+    box-shadow: none;
+    border: none
+}
+#id_password2 {
+    outline: none;
+    box-shadow: none;
+    border: none
+}
+#div_id_username {
+    margin-bottom: 0.7rem !important;
+}
+#div_id_email {
+    margin-bottom: 0.7rem !important;
+}
+#div_id_password1 {
+    margin-bottom: 0.7rem !important;
+}
+#div_id_password2 {
+    margin-bottom: 0.7rem !important;
+}
+.requiredField {
+    margin-bottom: 0.3rem !important;
+}
+.form-control {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0.3rem;
+}
+</style>
+    <div class="register-form-row">
+        <div class="register-form-col">
+            <h3 class="register-form-title">Create your account</h3>
+            <form method='POST'>
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button class="sign-up-btn" type='submit'>Sign Up</button>
+                <a class="sign-up-cancel-btn" href="{% url 'music:home' %}" type="button">Cancel</a>
+            </form>
+            <small class="have-account">
+                Already have an account?
+                <a class="sign-in-link" href="{% url 'users:login' %}">Sign in</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer%}
+{% endblock footer%}

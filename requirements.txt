@@ -1,0 +1,9 @@
+mutagen==1.45.1
+Django==3.1.5
+Pillow==8.1.0
+django-crispy-forms==1.10.0
+
+# for Heroku
+whitenoise==5.2.0
+gunicorn==20.0.4
+psycopg2-binary==2.8.6

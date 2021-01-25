@@ -1,0 +1,64 @@
+{% extends 'music/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Upload Song</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+    #id_title {
+        outline: none;
+        box-shadow: none;
+        border:none;
+    }
+    #id_file_type {
+        outline: none;
+        box-shadow: none;
+        border:none;
+    }
+    #id_album_cover {
+        outline: none;
+        box-shadow: none;
+        border:none;
+    }
+    .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0.3rem;
+    }
+   .form-group {
+        margin-bottom: 0.5rem;
+    }
+    label {
+        margin-bottom: 0.3rem;
+    }
+    .form-control-file {
+        font-size: 0.8rem;
+    }
+</style>
+    <!-- {% if error_message %}
+        {{ error_message }}
+    {% else %} -->
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="create-song-form-row">
+        <div class="create-song-form-col">
+            <h3 class="create-song-form-title">Upload Song</h3>
+            {{ song_form|crispy}}
+            <button class='btn-add-song' type='submit'>Submit</button>
+            <a class="song-form-cancel" href="{% url 'music:my_albums' user.pk %}" type="button">Cancel</a>
+        </div>
+    </div>
+</form>
+<!-- {% endif %} -->
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

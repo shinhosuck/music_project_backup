@@ -1,0 +1,20 @@
+{% extends "music/base.html" %}
+
+
+{% block title %}
+	<title>Warning</title>
+{% endblock title%}
+
+{% block content %}
+<div class="song-warning-message-container">
+	<p class="song-warning-message">{{ message }}</p>
+	<div class="song-warning-message-btns">
+		<a class="song-del-cancel-btn" type="button" href="{% url 'music:my_albums' user.pk %}">
+			Cancel
+		</a>
+		<a  class="song-delete-ok-btn" type="button" href="{% url 'music:song_delete' album.pk song.pk %}">
+			Delete
+		</a>
+	</div>
+</div>
+{% endblock content %}

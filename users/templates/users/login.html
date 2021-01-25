@@ -1,0 +1,66 @@
+{% extends 'music/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Sign In</title>
+{% endblock title %}
+
+{% block navbar%}
+{% endblock navbar%}
+
+{% block image%}
+{% endblock image%}
+
+{% block content %}
+<style>
+    .form-text {
+        color: rgba(0, 0, 0, 0.7)!important;
+        font-size: 0.7rem;
+    }
+    ul > li {
+        margin-left: 1rem;
+    }
+    #div_id_username {
+        margin-bottom: 0.7rem !important;
+    }
+    #div_id_password {
+        margin-bottom: 0.7rem !important;
+    }
+    .requiredField {
+        margin-bottom: 0.3rem !important;
+    }
+    #id_username {
+        outline: none;
+        box-shadow: none;
+        border: none
+    }
+    #id_password {
+        outline: none;
+        box-shadow: none;
+        border: none
+    }
+    .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0.3rem;
+    }
+</style>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="login-form-row">
+            <div class="login-form-col">
+                <h3 class="sign-in-form-title">Sign in</h3>
+                {{ form|crispy}}
+                <button class="sign-in-btn" type='submit'>Sign in</button>
+                <a class="sign-in-cancel-btn" href="{% url 'music:home' %}" type="button">Cancel</a>
+                <small class="not-registered">
+                    Not yet registered?
+                    <a class="sign-up-link" href="{% url 'users:register' %}">Sign up</a>
+                </small>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

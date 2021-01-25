@@ -1,0 +1,267 @@
+{% extends 'music/base.html' %}
+
+{% block title %}
+    <title>My Album</title>
+{% endblock title%}
+
+{% block profile %}
+<div class="my-album-profile-container">
+    <div class="my-album-profile-item">
+        <img class='my-album-profile-img' src="{{ user.profile.image.url }}" alt="coming soon">
+        <div class="my-album-profile-small-item">
+            <small class="my-album-profile-username">User: {{ user.username }}</small>
+            <small class="my-album-profile-small-1">Date Joined: {{ user.date_joined|date:"F, d, Y" }}</small>
+            <small class="my-album-profile-small-2">Email: {{ user.email }}</small>
+        </div>
+    </div>
+</div>
+{% endblock profile%}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if max_num == 0 %}
+        <div class="my-no-album-container">
+            <div class="my-no-album-col">
+                <div class='my-no-album-container-items'>
+                    <small class="my-no-album-small-title">You don't have any album!</small>
+                    <small class="my-no-album-small">
+                        <a href="{% url 'music:create_album' %}" class="my-add-album-link">Click here to add album</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% elif max_num <= 5 %}
+        <div class="my-album-container-flex">
+            {% for album in user.album_set.all %}
+                <div class="my-album-col-flex">
+                    <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'
+                    title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                            Uploaded by: {{ album.user.username }}">
+                        <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                        <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                        <small class="my-album-small1">{{album.artist }}</small>
+                        <i class="fa fa-play fa-2x my-album-hide-btn my-album-flex-play-btn"></i>
+                        <small class="my-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                            <i class="fas fa-thumbs-up"></i>
+                            {{ album.likes.count }}
+                        </small>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="my-album-main-container">
+            {% for genre in genres %}
+                {% if genre == "Rock" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Rock" and "Rock" in genres %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Pop" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Pop" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Rap" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Rap" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}" >
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Blues" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Blues" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Jazz" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Jazz" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Classical" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Classical" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "R&B" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "R&B" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for genre in genres %}
+                {% if genre == "Country" %}
+                    <h3 class='my-album-header'>{{ genre }}</h3>
+                {% endif %}
+            {% endfor%}
+            <div class="my-album-container">
+                {% for album in user.album_set.all %}
+                    {% if album.genre.name == "Country" %}
+                        <div class="my-album-col" title="Title: {{ album.title }}  Artist: {{ album.artist }}
+                                Uploaded by: {{ album.user.username }}">
+                            <a href="{% url 'music:play_album' album.pk %}" class='my-album-container-items'>
+                                <img class='my-album-img-size' src="{{ album.album_cover.url }}" alt="">
+                                <small class="my-album-small-title">{{ album.title|truncatechars:15 }}</small>
+                                <small class="my-album-small1">{{album.artist }}</small>
+                                <i class="fa fa-play fa-2x my-album-hide-btn my-album-play-btn"></i>
+                                <small class="home-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    {{ album.likes.count }}
+                                </small>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

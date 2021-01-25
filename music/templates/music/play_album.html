@@ -1,0 +1,65 @@
+{% extends "music/base.html"%}
+
+{% block image%}
+{% endblock image%}
+
+{% block title %}
+    <title>Play Album</title>
+{% endblock title%}
+
+{% block content %}
+<style>
+
+</style>
+<div class="player-container">
+    <div class="player-row">
+        <div class="player-title-column">
+            <h4 class="player-title">Now Playing</h4>
+            <img class="player-album-img" src="{{ album.album_cover.url }}" alt="album image">
+        </div>
+        <div class="player-songs-buttons">
+            <div class="player-column" id="song-container">
+                <div class="player-text-container">
+                    <small class="player-album-title">{{ album.title|truncatechars:15}}</small>
+                    <a class="player-album-thumbs-up" href="{% url 'music:album_likes' album.pk %}">
+                        <i class="fas fa-thumbs-up"></i>
+                        {{ album.likes.count }}
+                    </a>
+                    <a class="player-album-detail-link" href="{% url 'music:detail' album.pk %}">Detail</a>
+                </div>
+            {% if not album.song_set.all %}
+                <div class="audio-container">
+                    <p class="player-song-not-available">Album is empty</p>
+                </div>
+            {% else %}
+                <div class="audio-container">
+                    {% for song in album.song_set.all %}
+                    <audio class="song" src="{{ song.file_song.url }}"></audio>
+                    <div class="player-song-container">
+                        <small class="song-title song-item">{{ forloop.counter }}. {{ song.title|truncatechars:15 }}</small>
+                        <small class="song-duration"></small>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            </div>
+            <div class="progres-bar-container">
+                <small class="initial"style="margin-right: 0.3rem; font-size: 0.8rem">0:00</small>
+                <progress class="bar" id="progress" value="0"></progress>
+                <small style="margin-left: 0.3rem; font-size: 0.8rem" class="max-duration">0:00</small>
+            </div>
+            <div class="player-btn-column">
+                <i class="btn fas fa-random player-btn-random"></i>
+                <i id="back" class="btn fas fa-backward player-btn-back"></i>
+                <i id="play" class="btn fas fa-play player-btn-play"></i>
+                <i style="display: none;" id="pause" class="btn fas fa-pause player-btn-pause"></i>
+                <i id="forward" class="btn fas fa-forward player-btn-forward"></i>
+                <i class="btn fas fa-redo-alt player-btn-repeat"></i>
+            </div>
+        </div>
+        {% for length in song_length %}
+            <small id="song-length" style="display: none;">{{ length }}</small>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
