@@ -758,7 +758,6 @@ body {
 }
 .album-header-container {
     margin-bottom: 0.5rem;
-    /* padding-top: 2rem; */
 }
 .album-header {
     color: rgb(245, 245, 245);
@@ -771,9 +770,20 @@ body {
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
     margin-bottom: 4rem;
 }
+.album-container::-webkit-scrollbar {
+   background: rgb(255, 255, 255);
+  }
+
+.album-container::-webkit-scrollbar-track {
+      box-shadow: inset 0px 0px 15px rgb(0, 0, 0);
+  }
+
+.album-container::-webkit-scrollbar-thumb {
+    background:rgb(77, 77, 77);
+  }
 .album-col {
     white-space: nowrap;
     display: inline-block;
@@ -866,6 +876,7 @@ body {
         margin-left: 0;
         padding-bottom: 0;
     }
+
     .side-window-header {
         letter-spacing: 0.1rem;
         margin: 0 3rem 1rem 3rem;
@@ -877,7 +888,19 @@ body {
         overflow-y: hidden;
         border-radius: none;
         padding: 0.5rem;
+        padding-bottom: 0.2rem !important;
     }
+    .side-window::-webkit-scrollbar {
+       background: rgb(255, 255, 255);
+      }
+
+    .side-window::-webkit-scrollbar-track {
+        box-shadow: inset 0px 0px 15px rgb(0, 0, 0);
+      }
+
+    .side-window::-webkit-scrollbar-thumb {
+        background:rgb(77, 77, 77);
+      }
     .side-window-text-container {
         display: inline-block;
         white-space:nowrap;
@@ -908,14 +931,6 @@ body {
         font-size: 3rem;
     }
 }
-/*@media screen and (max-width: 420px) {
-    .hide-btn {
-        display: block;
-    }
-    .side-window-hide-btn {
-        display: block;
-    }
-}*/
 /* END HOME.HTML */
 
 /* MY_ALBUMS.HTML */
@@ -1000,9 +1015,20 @@ body {
     white-space:nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
     margin-bottom: 4rem;
 }
+.my-album-container::-webkit-scrollbar {
+   background: rgb(255, 255, 255);
+  }
+
+.my-album-container::-webkit-scrollbar-track {
+      box-shadow: inset 0px 0px 15px rgb(0, 0, 0);
+  }
+
+.my-album-container::-webkit-scrollbar-thumb {
+    background:rgb(77, 77, 77);
+  }
 .my-album-col {
     white-space: nowrap;
     display: inline-block;
